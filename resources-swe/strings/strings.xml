@@ -1,0 +1,99 @@
+<strings>
+
+	<string id="AppName">Crystal</string>
+	<string id="AppVersionTitle">App Version</string>
+
+	<string id="ThemeTitle">Tema</string>
+	<string id="HoursColourTitle">Färg Timme</string>
+	<string id="MinutesColourTitle">Färg Minut</string>
+	<string id="LeftGoalMeterTitle">Vänster Mätare</string>
+	<string id="RightGoalMeterTitle">Höger Mätare</string>
+	<string id="CaloriesGoalTitle">Kalorimål (1-10,000kCal)</string>
+	<string id="GoalMeterStyleTitle">Mätarstil</string>
+	<string id="LocalTimeInCityTitle">Add Local Time in City (Beta)</string><!-- TODO_TRANSLATE -->
+	<string id="MoveBarStyleTitle">Rörelsemätarstil</string>
+	<string id="HideSecondsTitle">Dölj Sekunder</string>
+	<string id="HideHoursLeadingZeroTitle">Dölj inledande nollor</string>
+
+	<string id="FieldCountTitle">Number Of Data Fields</string>
+	<string id="DataField1Title">Data Field 1</string>
+	<string id="DataField2Title">Data Field 2</string>
+	<string id="DataField3Title">Data Field 3</string>
+
+	<string id="IndicatorCountTitle">Number Of Indicators</string>
+	<string id="Indicator1Title">Indicator 1</string>
+	<string id="Indicator2Title">Indicator 2</string>
+	<string id="Indicator3Title">Indicator 3</string>
+
+	<string id="FromTheme">(Från tema)</string>
+	<string id="MonoHighlight">Mono Highlight</string>
+	<string id="Mono">Mono</string>
+
+	<string id="MultiSegments">Multisegment</string>
+	<string id="SingleSegment">Enkelsegment</string>
+	<string id="ShowAllSegments">Visa Alla Segment</string>
+	<string id="ShowFilledSegments">Visa Fyllda Segment</string>
+	<string id="Hidden">Dold</string>
+
+	<string id="ThemeBlueDark">Blå (Mörk)</string>
+	<string id="ThemePinkDark">Rosa (Mörk)</string>
+	<string id="ThemeRedDark">Röd (Mörk)</string>
+	<string id="ThemeGreenDark">Grön (Mörk)</string>
+	<string id="ThemeCornflowerBlueDark">Blåklintsblå (Mörk)</string>
+	<string id="ThemeLemonCreamDark">Citronkräm (Mörk)</string>
+	<string id="ThemeVividYellowDark">Levande Gul (Mörk)</string>
+	<string id="ThemeDaygloOrangeDark">Lysande Orange (Mörk)</string>
+	<string id="ThemeMonoDark">Mono (Mörk)</string>
+	<string id="ThemeMonoLight">Mono (Ljus)</string>
+	<string id="ThemeBlueLight">Blå (Ljus)</string>
+	<string id="ThemeRedLight">Röd (Ljus)</string>
+	<string id="ThemeGreenLight">Grön (Ljus)</string>
+	<string id="ThemeDaygloOrangeLight">Lysande Orange (Ljus)</string>
+	<string id="ThemeCornYellowDark">Corn Yellow (Mörk)</string><!-- TODO_TRANSLATE -->
+
+	<string id="Steps">Steg</string>
+	<string id="FloorsClimbed">Våningar</string>
+	<string id="ActiveMinutes">Aktiva Minuter (Vecka)</string>
+	<string id="CaloriesManualGoal">Kalorier (Manuellt mål)</string>
+
+	<string id="HeartRate">Puls</string>
+	<string id="HeartRateLive5s">Puls (Live 5s)</string>
+	<string id="Battery">Batteri</string>
+	<string id="BatteryHidePercentage">Batteri (Dölj Procent)</string>
+	<string id="Notifications">Notifieringar</string>
+	<string id="Calories">Kalorier</string>
+	<string id="Distance">Distans</string>
+	<string id="Alarms">Alarm</string>
+	<string id="Altitude">Altitud</string>
+	<string id="Temperature">Termometer</string>
+	<string id="Bluetooth">Bluetooth</string>
+	<string id="BluetoothOrNotifications">Bluetooth/Notifieringar</string>
+	<string id="SunriseSunset">Soluppgång/Solnedgång</string>
+	<string id="Weather">Väder</string>
+	<string id="Pressure">Tryck</string>
+
+	<!-- Internal use only. Required because fonts cannot be overridden by locale. Leave blank for no override. -->
+	<string id="DATE_FONT_OVERRIDE"></string>	
+
+	<string id="Sun">sön</string>
+	<string id="Mon">mån</string>
+	<string id="Tue">tis</string>
+	<string id="Wed">ons</string>
+	<string id="Thu">tors</string>
+	<string id="Fri">fre</string>
+	<string id="Sat">lör</string>
+
+	<string id="Jan">jan</string>
+	<string id="Feb">feb</string>
+	<string id="Mar">mar</string>
+	<string id="Apr">apr</string>
+	<string id="May">maj</string>
+	<string id="Jun">jun</string>
+	<string id="Jul">jul</string>
+	<string id="Aug">aug</string>
+	<string id="Sep">sep</string>
+	<string id="Oct">okt</string>
+	<string id="Nov">nov</string>
+	<string id="Dec">dec</string>
+
+</strings>
