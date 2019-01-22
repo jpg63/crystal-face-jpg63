@@ -16,6 +16,9 @@
 			<listEntry value="10">@Strings.ThemeGreenLight</listEntry>
 			<listEntry value="11">@Strings.ThemeRedLight</listEntry>
 			<listEntry value="13">@Strings.ThemeDaygloOrangeLight</listEntry>
+			<listEntry value="13">@Strings.ThemeDaygloOrangeLight</listEntry>
+			<listEntry value="16">@Strings.ThemeBlackLight</listEntry>
+			<listEntry value="15">@Strings.ThemeColorLight</listEntry>
 		</settingConfig>
 	</setting>
 
@@ -91,6 +94,12 @@
 			<listEntry value="10">@Strings.SunriseSunset</listEntry>
 			<!--listEntry value="11">@Strings.Weather</listEntry-->
 		</settingConfig>
+
+
+
+
+
+
 	</setting>
 
 	<setting propertyKey="@Properties.LocalTimeInCity" title="@Strings.LocalTimeInCityTitle">

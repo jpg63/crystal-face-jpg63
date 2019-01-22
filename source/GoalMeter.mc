@@ -8,6 +8,7 @@ const MIN_WHOLE_SEGMENT_HEIGHT = 5;
 enum /* GOAL_TYPES */ {
 	GOAL_TYPE_BATTERY = -1,
 	GOAL_TYPE_CALORIES = -2,
+	GOAL_TYPE_HEARTH   = -3,
 
 	GOAL_TYPE_STEPS = 0, // App.GOAL_TYPE_STEPS
 	GOAL_TYPE_FLOORS_CLIMBED, // App.GOAL_TYPE_FLOORS_CLIMBED
@@ -57,7 +58,7 @@ class GoalMeter extends Ui.Drawable {
 		mHeight = params[:height];
 		mLayoutSeparator = params[:separator];
 
-		// Read meter style setting to determine current separator width.
+ 		// Read meter style setting to determine current separator width.
 		onSettingsChanged();
 
 		mWidth = getWidth();
@@ -281,10 +282,12 @@ class GoalMeter extends Ui.Drawable {
 
 		// Draw rectangles, separator-width apart vertically, starting from bottom.
 		for (var i = 0; i < segments.size(); ++i) {			
+//		dc.setColor(fillColour, Graphics.COLOR_TRANSPARENT /* Graphics.COLOR_RED */);
 			segmentEnd = segmentStart + segments[i];
 
 			// Full segment is filled.
 			if ((segmentStart >= startFillHeight) && (segmentEnd <= endFillHeight)) {
+//		dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT /* Graphics.COLOR_RED */);
 				fillStart = segmentStart;
 				fillEnd = segmentEnd;
 

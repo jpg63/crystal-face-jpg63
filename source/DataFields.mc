@@ -27,7 +27,8 @@ enum /* FIELD_TYPES */ {
 	FIELD_TYPE_HR_LIVE_5S,
 	FIELD_TYPE_SUNRISE_SUNSET,
 	FIELD_TYPE_WEATHER,
-	FIELD_TYPE_PRESSURE
+	FIELD_TYPE_PRESSURE,
+	FIELD_TYPE_WEATHER_TREND
 }
 
 class DataFields extends Ui.Drawable {
@@ -122,6 +123,7 @@ class DataFields extends Ui.Drawable {
 			case 0:
 				break;
 		}
+	  drawWeatherTrend(dc, isPartialUpdate);
 	}
 
 	// Both regular and small icon fonts use same spot size for easier optimisation.
@@ -200,6 +202,47 @@ class DataFields extends Ui.Drawable {
 			colour = gMeterBackgroundColour;
 		} else {
 			colour = gThemeColour;
+
+/*
+	FIELD_TYPE_SUNRISE = -1,	
+	//FIELD_TYPE_SUNSET = -2,
+
+	// Real fields (used by properties).
+	FIELD_TYPE_HEART_RATE = 0,
+	FIELD_TYPE_BATTERY,
+	FIELD_TYPE_NOTIFICATIONS,
+	FIELD_TYPE_CALORIES,
+	FIELD_TYPE_DISTANCE,
+	FIELD_TYPE_ALARMS,
+	FIELD_TYPE_ALTITUDE,
+	FIELD_TYPE_TEMPERATURE,
+	FIELD_TYPE_BATTERY_HIDE_PERCENT,
+	FIELD_TYPE_HR_LIVE_5S,
+	FIELD_TYPE_SUNRISE_SUNSET,
+	FIELD_TYPE_WEATHER
+*/
+		    if (App.getApp().getProperty("Theme") == THEME_COLOR_LIGHT) {
+		      if ((fieldType == FIELD_TYPE_HEART_RATE) or (fieldType == FIELD_TYPE_HR_LIVE_5S)) {
+		        colour = Graphics.COLOR_DK_RED;
+		      } else if (fieldType == FIELD_TYPE_NOTIFICATIONS) {
+		        colour = Graphics.COLOR_DK_GREEN;
+		      } else if (fieldType == FIELD_TYPE_CALORIES) {
+		        colour = Graphics.COLOR_ORANGE;
+		      } else if (fieldType == FIELD_TYPE_ALARMS) {
+		        colour = Graphics.COLOR_PURPLE;
+		      } else if (fieldType == FIELD_TYPE_ALTITUDE) {
+		        colour = Graphics.COLOR_DK_GREEN;
+		      } else if ((fieldType == FIELD_TYPE_SUNRISE_SUNSET) or (fieldType == FIELD_TYPE_SUNRISE)) {
+		        colour = Graphics.COLOR_YELLOW;
+		      } else if (fieldType == FIELD_TYPE_WEATHER) {
+		        colour = Graphics.COLOR_YELLOW;
+		      } else {
+			    colour = gThemeColour;
+		      }
+		    }
+		    else {
+		  	  colour = gThemeColour;
+		    }
 		}
 
 		// Battery.
@@ -325,7 +368,7 @@ class DataFields extends Ui.Drawable {
 					// LIVE_HR_SPOT => "=",
 
 					FIELD_TYPE_SUNRISE_SUNSET => "?",
-					FIELD_TYPE_PRESSURE => "@",
+					FIELD_TYPE_PRESSURE => "@"
 				}[fieldType];
 			}
 
@@ -356,6 +399,92 @@ class DataFields extends Ui.Drawable {
 				}
 			}
 		}
+	}  
+    
+  	private function fillPolygon(dc, sx, sy, dx, dy, theta, points) {
+		var sin = Math.sin(theta);
+		var cos = Math.cos(theta);
+
+		var coords = new [points.size()];
+		for (var i = 0; i < points.size(); ++i) {
+
+			// make a copy so as to not modify the points array
+			coords[i] = [ points[i][0] * sx, points[i][1] * sy ];
+
+			var x = (coords[i][0] * cos) - (coords[i][1] * sin) + dx;
+			var y = (coords[i][0] * sin) + (coords[i][1] * cos) + dy;
+
+			coords[i][0] = x;
+			coords[i][1] = y;
+		}
+
+		dc.fillPolygon(coords);
+	}
+
+	private function drawWeatherTrend(dc, isPartialUpdate) {		
+
+		// 1. Value: draw first, as top of text overlaps icon.
+//		var result = getValueForFieldType(fieldType);
+//		var value = result["value"];
+
+
+		// #34 Clip live HR value.
+		// Optimisation: hard-code clip rect dimensions. Possible, as all watches use same label font.
+		dc.setColor(gMonoLightColour, gBackgroundColour);
+
+		if (isPartialUpdate) {
+			dc.setClip(
+				40,
+				190,
+				110,
+				210);
+			
+			dc.clear();
+		}
+	
+	  var value = -3;
+	  var arrow = [ [120,200], [120,198], [125,200], [120, 204], [120, 200] ];
+	  
+      switch (value) {
+		case -2:
+	      dc.drawLine(85,198,105,198);
+	      dc.drawLine(105,198,120,208);
+	      var arrow2 = [ [116,208], [121,204], [124,214], [116, 208] ];
+	      
+		  dc.fillPolygon(arrow2);
+		  break;
+		case -1:
+	      dc.drawLine(85,198,100,198);
+	      dc.drawLine(100,198,110,210);
+	      dc.drawLine(110,210,120,210);
+	//      dc.drawLine(85,203,134,203);
+//		  fillPolygontranslation(dc,0,8,arrow);
+		  //dc.fillPolygon(arrow);		  
+		  fillPolygon(dc,1,1,0,9,0,arrow);
+		  break;
+		case 0:
+	      dc.drawLine(85,202,120,202);
+	//      dc.drawLine(85,203,134,203);
+
+		  fillPolygon(dc,1,1,0,1,0,arrow);
+          break;
+        case 1:
+ 	      dc.drawLine(85,210,100,210);
+	      dc.drawLine(100,210,110,198);
+	      dc.drawLine(110,198,120,198);
+	//      dc.drawLine(85,203,134,203);
+//		  fillPolygontranslation(dc,0,8,arrow);
+		  //dc.fillPolygon(arrow);		  
+		  fillPolygon(dc,1,1,0,-3,0,arrow);
+          break;
+        case 2:
+	      dc.drawLine(85,210,105,210);
+	      dc.drawLine(105,210,120,196);
+	      arrow2 = [ [120,196], [116,194], [122,192], [122,198], [120, 196] ];
+	      
+		  dc.fillPolygon(arrow2);
+          break;
+      }
 	}
 
 	// Return empty result["value"] string if value cannot be retrieved (e.g. unavailable, or unsupported).
@@ -475,7 +604,10 @@ class DataFields extends Ui.Drawable {
 
 			case FIELD_TYPE_TEMPERATURE:
 				if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getTemperatureHistory)) {
+//					sample = SensorHistory.getTemperatureHistory({ :period => 1, :order => SensorHistory.ORDER_NEWEST_FIRST })
+//						.next();
 					sample = SensorHistory.getTemperatureHistory(null).next();
+
 					if ((sample != null) && (sample.data != null)) {
 						temperature = sample.data;
 
@@ -556,9 +688,14 @@ class DataFields extends Ui.Drawable {
 				if (App has :Storage) {
 					var weather = App.Storage.getValue("OpenWeatherMapCurrent");
 
+
 					// Awaiting location.
 					if (gLocationLat == -360.0) { // -360.0 is a special value, meaning "unitialised". Can't have null float property.
 						value = "gps?";
+
+
+
+
 
 					// Stored weather data available.
 					} else if ((weather != null) && (weather["temp"] != null)) {
@@ -568,8 +705,9 @@ class DataFields extends Ui.Drawable {
 							temperature = (temperature * (9.0 / 5)) + 32; // Convert to Farenheit: ensure floating point division.
 						}
 
-						value = temperature.format(INTEGER_FORMAT) + "°";
-						result["weatherIcon"] = weather["icon"];
+							value = temperature.format(INTEGER_FORMAT) + "°";
+							result["weatherIcon"] = weather["icon"];
+						
 
 					// Awaiting response.
 					} else if (App.Storage.getValue("PendingWebRequests")["OpenWeatherMapCurrent"]) {
@@ -577,6 +715,8 @@ class DataFields extends Ui.Drawable {
 					}
 				}
 				break;
+			case FIELD_TYPE_WEATHER_TREND:
+				break;	
 
 			case FIELD_TYPE_PRESSURE:
 
@@ -605,6 +745,7 @@ class DataFields extends Ui.Drawable {
 					}
 				}
 				break;
+
 		}
 
 		result["value"] = value;

@@ -27,9 +27,15 @@ class ThickThinTime extends Ui.Drawable {
 	private var AM_PM_X_OFFSET = 2;
 
 	// #10 Adjust position of seconds to compensate for hidden hours leading zero.
-	private var mSecondsClipXAdjust = 0;
+	private var mSecondsClipXAdjust = 0; //20; //0;
+	
+	private var mAdjustJpg63X = 0;
+	private var mAdjustJpg63Y = 0;
+	
 
 	function initialize(params) {
+	    if (App.getApp().getProperty("DisplayJpg63") == true) { mSecondsClipXAdjust = 20; }
+	    
 		Drawable.initialize(params);
 
 		mTwoLineOffset = params[:twoLineOffset];
@@ -45,8 +51,20 @@ class ThickThinTime extends Ui.Drawable {
 		mSecondsClipRectWidth = params[:secondsClipWidth];
 		mSecondsClipRectHeight = params[:secondsClipHeight];
 
-		mHoursFont = Ui.loadResource(Rez.Fonts.HoursFont);
-		mMinutesFont = Ui.loadResource(Rez.Fonts.MinutesFont);
+		if (App.getApp().getProperty("DisplayJpg63") == true) {
+		  System.println("Theme jpg63");
+		  System.println(App.getApp().getProperty("DisplayJpg63"));
+		  mHoursFont = Ui.loadResource(Rez.Fonts.HoursFont2);
+		  mMinutesFont = Ui.loadResource(Rez.Fonts.MinutesFont2);
+		  mAdjustJpg63X = 10;
+		  mAdjustJpg63Y = 15;
+		} else {
+		  System.println("Theme normal");
+		  mHoursFont = Ui.loadResource(Rez.Fonts.HoursFont);
+		  mMinutesFont = Ui.loadResource(Rez.Fonts.MinutesFont);
+		  mAdjustJpg63X = 0;
+		  mAdjustJpg63Y = 0;
+		}		
 		mSecondsFont = Ui.loadResource(Rez.Fonts.SecondsFont);
 	}
 
@@ -126,13 +144,14 @@ class ThickThinTime extends Ui.Drawable {
 	(:single_line_time)
 	function drawSingleLine(dc, hours, minutes, amPmText) {
 		var x;
-		var halfDCWidth = dc.getWidth() / 2;
-		var halfDCHeight = (dc.getHeight() / 2) + mAdjustY;
+		var halfDCWidth = (dc.getWidth() / 2) - mAdjustJpg63X;
+		var halfDCHeight = (dc.getHeight() / 2) + mAdjustY + mAdjustJpg63Y;
 
 		// Centre combined hours and minutes text (not the same as right-aligning hours and left-aligning minutes).
 		// Font has tabular figures (monospaced numbers) even across different weights, so does not matter which of hours or
 		// minutes font is used to calculate total width. 
-		var totalWidth = dc.getTextWidthInPixels(hours + minutes, mHoursFont);
+		var totalWidth = dc.getTextWidthInPixels(hours, mHoursFont) +  dc.getTextWidthInPixels(minutes, mMinutesFont);
+		if (App.getApp().getProperty("DisplayJpg63") == true) { totalWidth = totalWidth + 4; }
 		x = halfDCWidth - (totalWidth / 2);
 
 		// Draw hours.
@@ -144,7 +163,7 @@ class ThickThinTime extends Ui.Drawable {
 			hours,
 			Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER
 		);
-		x += dc.getTextWidthInPixels(hours, mHoursFont);
+		x += dc.getTextWidthInPixels(hours, mHoursFont) + 4;
 
 		// Draw minutes.
 		dc.setColor(gMinutesColour, Graphics.COLOR_TRANSPARENT);
@@ -157,6 +176,7 @@ class ThickThinTime extends Ui.Drawable {
 		);
 
 		// If required, draw AM/PM after minutes, vertically centred.
+		if (App.getApp().getProperty("DisplayJpg63") == true) { amPmText = ""; }
 		if (amPmText.length() > 0) {
 			dc.setColor(gThemeColour, Graphics.COLOR_TRANSPARENT);
 			x = x + dc.getTextWidthInPixels(minutes, mMinutesFont);

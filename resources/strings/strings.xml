@@ -1,6 +1,6 @@
 <strings>
 
-	<string id="AppName">Crystal</string>
+	<string id="AppName">Crystal Modified</string>
 	<string id="AppVersionTitle">App Version</string>
 
 	<string id="ThemeTitle">Theme</string>
@@ -9,11 +9,14 @@
 	<string id="LeftGoalMeterTitle">Left Meter</string>
 	<string id="RightGoalMeterTitle">Right Meter</string>
 	<string id="CaloriesGoalTitle">Calories Goal (1-10,000kCal)</string>
+	<string id="MaxHearthGoalTitle">Max Hearth Rate (1-195)</string>	
 	<string id="GoalMeterStyleTitle">Meter Style</string>
 	<string id="LocalTimeInCityTitle">Add Local Time in City (Beta)</string>
 	<string id="MoveBarStyleTitle">Move Bar Style</string>
 	<string id="HideSecondsTitle">Hide Seconds</string>
 	<string id="HideHoursLeadingZeroTitle">Hide Hours Leading Zero</string>
+	<string id="SimpleDateTitle">date in digital format</string>
+	<string id="DisplayJpg63Title">Theme Display Jpg63</string>
 	
 	<string id="FieldCountTitle">Number Of Data Fields</string>
 	<string id="DataField1Title">Data Field 1</string>
@@ -50,11 +53,14 @@
 	<string id="ThemeGreenLight">Green (Light)</string>
 	<string id="ThemeDaygloOrangeLight">Dayglo Orange (Light)</string>
 	<string id="ThemeCornYellowDark">Corn Yellow (Dark)</string>
+	<string id="ThemeBlackLight">Black (Light)</string>
+	<string id="ThemeColorLight">Color (Light)</string>
 
 	<string id="Steps">Steps</string>
 	<string id="FloorsClimbed">Floors Climbed</string>
 	<string id="ActiveMinutes">Active Minutes (Weekly)</string>
 	<string id="CaloriesManualGoal">Calories (Manual Goal)</string>
+	<string id="HearthRateMax">Hearth Rate (Max)</string>
 
 	<string id="HeartRate">Heart Rate</string>
 	<string id="HeartRateLive5s">Heart Rate (Live 5s)</string>

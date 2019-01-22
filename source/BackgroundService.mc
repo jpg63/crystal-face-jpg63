@@ -159,6 +159,16 @@ class BackgroundService extends Sys.ServiceDelegate {
 			};
 
 		// HTTP error: do not save.
+
+
+
+
+
+
+
+
+
+
 		} else {
 			result = {
 				"httpError" => responseCode

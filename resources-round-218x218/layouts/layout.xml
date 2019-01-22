@@ -4,7 +4,7 @@
 	<drawable id="LeftGoalMeter" class="GoalMeter">
 		<param name="side">:left</param>
 		<param name="shape">:arc</param>
-		<param name="stroke">8</param>
+		<param name="stroke">18</param>
 		<param name="height">138</param>
 		<param name="separator">2</param>
 	</drawable>

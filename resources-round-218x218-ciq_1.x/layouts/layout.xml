@@ -19,7 +19,7 @@
 
 	<!-- Mask required for goal meter drawing without clip support -->
 	<drawable class="GoalMeterMask">
-		<param name="stroke">8</param>
+		<param name="stroke">8</param>   
 	</drawable>
 
 	<drawable id="DataArea" class="DataArea">
@@ -44,7 +44,7 @@
 	</drawable>
 
 	<drawable id="Indicators" class="Indicators">
-		<param name="locX">31</param>
+		<param name="locX">31</param> 
 		<param name="locY">109</param>
 		<param name="spacingY">30</param>
 	</drawable>

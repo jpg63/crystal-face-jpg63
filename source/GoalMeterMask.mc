@@ -11,9 +11,15 @@ class GoalMeterMask extends Ui.Drawable {
 		Drawable.initialize(params);
 
 		mStroke = params[:stroke];
+		if (App.getApp().getProperty("DisplayJpg63") == true) { 
+		  mStroke = mStroke + 4;
+		}
 	}
 
 	function draw(dc) {
+	
+//	       System.println(mStroke);
+	
 		dc.setColor(gBackgroundColour, Gfx.COLOR_TRANSPARENT);
 		dc.fillCircle(dc.getWidth() / 2, dc.getHeight() / 2, (dc.getWidth() / 2) - mStroke);
 	}

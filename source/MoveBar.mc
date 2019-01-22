@@ -52,7 +52,7 @@ class MoveBar extends Ui.Drawable {
 	}
 	
 	function draw(dc) {
-		if (App.getApp().getProperty("MoveBarStyle") == 2 /* HIDDEN */) {
+		if (((App.getApp().getProperty("MoveBarStyle") == 2) /* HIDDEN */) or (App.getApp().getProperty("DisplayJpg63") == true)) {
 			return;
 		}
 

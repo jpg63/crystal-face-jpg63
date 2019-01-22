@@ -1,11 +1,17 @@
 <fonts>
 	<font id="HoursFont" filename="titillium-web-bold-64.fnt" antialias="true"/>
+	<font id="HoursFont2" filename="javanese-bold-84.fnt" antialias="true"/> 
 	<font id="MinutesFont" filename="titillium-web-light-64.fnt" antialias="true"/>
+	<font id="MinutesFont2" filename="javanese-ligth-84.fnt" antialias="true"/> 
 	<font id="SecondsFont" filename="titillium-web-semibold-24.fnt" antialias="true" filter="0123456789AP"/>
 	<font id="DateFont" filename="titillium-web-semibold-24.fnt" antialias="true" filter=" 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÁÄÅÉÍÖØÚČĚŘŚŠŹŽ"/>
-	<font id="NormalFont" filename="titillium-web-semibold-16.fnt" antialias="true" filter="%-.0123456789!:?CFabefgikmpsty°"/>
+	<!--font id="NormalFont" filename="titillium-web-semibold-16.fnt" antialias="true" filter="%-.0123456789!:?CFabefgikmpsty°"/ -->
+	<font id="NormalFont" filename="titillium-web-semibold-20F.fnt" antialias="true" filter="%-.0123456789!:?CFaefgikmpsty°"/>
+	<font id="MediumFont" filename="titillium-web-semibold-20.fnt" antialias="true" filter="%-.0123456789!:?CFaefgikmpsty°"/>
 	<font id="NormalFontCities" filename="titillium-web-semibold-16.fnt" antialias="true" filter=" %',-.0123456789!:?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz°ÅÍÎÖáãäåæèéíðñóôöøûüž"/>
-	<font id="IconsFont" filename="crystal-icons.fnt" antialias="true"/>
+	<!-- font id="IconsFont" filename="crystal-icons.fnt" antialias="true"/ -->
+	<font id="IconsFont" filename="crystal-icons-small.fnt" antialias="true"/>
+	<font id="DateFont2" filename="javanese32.fnt" antialias="true"/>
 
 	<!-- Font size chosen such that height of sunshine icon is 24px -->
 	<!-- JavaScript: String.fromCharCode(61453, 61452, 61442, 61459, 61449, 61448, 61445, 61450, 61441) -->

@@ -32,12 +32,19 @@ class DateLine extends Ui.Drawable {
 		// Unfortunate: because fonts can't be overridden based on locale, we have to read in current locale as manually-specified
 		// string, then override font in code.
 		var dateFontOverride = Ui.loadResource(Rez.Strings.DATE_FONT_OVERRIDE);
-		if (resourceMap.hasKey(dateFontOverride)) {
-			dateFont = resourceMap[dateFontOverride];
+	    
+	    if (App.getApp().getProperty("SimpleDate")) {		
+		  dateFont = rezFonts.DateFont2;
+		  mFont = Ui.loadResource(dateFont);
+
 		} else {
+		  if (resourceMap.hasKey(dateFontOverride)) {
+			dateFont = resourceMap[dateFontOverride];
+		  } else {
 			dateFont = rezFonts.DateFont;
+		  }
+		  mFont = Ui.loadResource(dateFont);
 		}
-		mFont = Ui.loadResource(dateFont);
 
 		mX = params[:x];
 		mY = params[:y];
@@ -95,7 +102,12 @@ class DateLine extends Ui.Drawable {
 		if (mYLine2 != null) {
 			drawDoubleLine(dc, day);
 		} else {
-			drawSingleLine(dc, day);
+		    if (App.getApp().getProperty("SimpleDate")) {
+			  drawSingleLine2(dc);
+			}
+			else {
+			  drawSingleLine(dc, day);
+			}
 		}
 	}
 
@@ -168,4 +180,30 @@ class DateLine extends Ui.Drawable {
 			Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER
 		);
 	}
+	
+	function drawSingleLine2(dc) {
+	
+	  	var today = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
+		var dateString = Lang.format(
+    		"$1$.$2$.$3$",
+    		[
+        		today.day.format("%02d"),
+        		today.month.format("%02d"),
+        		today.year
+    		]
+		);
+		
+		var length = dc.getTextWidthInPixels(dateString, mFont);
+		var x = (dc.getWidth() / 2) - (length / 2);
+		
+		// Draw day of week.
+		dc.setColor(gMonoLightColour, Graphics.COLOR_TRANSPARENT);
+		dc.drawText(
+			x,
+			mY,
+			mFont,
+			dateString,
+			Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER
+		);
+	}	
 }

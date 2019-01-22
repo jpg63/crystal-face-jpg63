@@ -21,7 +21,13 @@
 			<listEntry value="10">@Strings.ThemeGreenLight</listEntry>
 			<listEntry value="11">@Strings.ThemeRedLight</listEntry>
 			<listEntry value="13">@Strings.ThemeDaygloOrangeLight</listEntry>
+			<listEntry value="15">@Strings.ThemeBlackLight</listEntry>
+			<listEntry value="16">@Strings.ThemeColorLight</listEntry>
 		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.DisplayJpg63" title="@Strings.DisplayJpg63Title">
+		<settingConfig type="boolean"/>
 	</setting>
 
 	<setting propertyKey="@Properties.LeftGoalType" title="@Strings.LeftGoalMeterTitle">
@@ -31,6 +37,7 @@
 			<listEntry value="2">@Strings.ActiveMinutes</listEntry>
 			<listEntry value="-1">@Strings.Battery</listEntry>
 			<listEntry value="-2">@Strings.CaloriesManualGoal</listEntry>
+			<listEntry value="-3">@Strings.HeartRate</listEntry>
 		</settingConfig>
 	</setting>
 
@@ -41,6 +48,7 @@
 			<listEntry value="2">@Strings.ActiveMinutes</listEntry>
 			<listEntry value="-1">@Strings.Battery</listEntry>
 			<listEntry value="-2">@Strings.CaloriesManualGoal</listEntry>
+			<listEntry value="-3">@Strings.HeartRate</listEntry>
 		</settingConfig>
 	</setting>
 
@@ -54,6 +62,10 @@
 
 	<setting propertyKey="@Properties.CaloriesGoal" title="@Strings.CaloriesGoalTitle">
 		<settingConfig type="numeric" min="1" max="10000" required="true"/>
+	</setting>
+
+	<setting propertyKey="@Properties.MaxHearthGoal" title="@Strings.MaxHearthGoalTitle">
+		<settingConfig type="numeric" min="0" max="250" required="true"/>
 	</setting>
 
 	<setting propertyKey="@Properties.FieldCount" title="@Strings.FieldCountTitle">
@@ -114,6 +126,10 @@
 		</settingConfig>
 	</setting>
 
+
+
+
+
 	<setting propertyKey="@Properties.IndicatorCount" title="@Strings.IndicatorCountTitle">
 		<settingConfig type="numeric" min="0" max="3" required="true"/>
 	</setting>
@@ -169,6 +185,10 @@
 	</setting>
 
 	<setting propertyKey="@Properties.HideSeconds" title="@Strings.HideSecondsTitle">
+		<settingConfig type="boolean"/>
+	</setting>
+
+	<setting propertyKey="@Properties.SimpleDate" title="@Strings.SimpleDateTitle">
 		<settingConfig type="boolean"/>
 	</setting>
 

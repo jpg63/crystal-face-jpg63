@@ -35,15 +35,21 @@ class Indicators extends Ui.Drawable {
 
 	function draw(dc) {
 		var indicatorCount = App.getApp().getProperty("IndicatorCount");
+		var tmplocX = locX;
+		var tmplocY = 0;
+		if (App.getApp().getProperty("DisplayJpg63") == true) { 
+		  tmplocX = 180; 
+		  tmplocY = 20;
+		}
 		if (indicatorCount == 3) {
-			drawIndicator(dc, mIndicator1Type, locX, locY - mSpacingY);
-			drawIndicator(dc, mIndicator2Type, locX, locY);
-			drawIndicator(dc, mIndicator3Type, locX, locY + mSpacingY);
+			drawIndicator(dc, mIndicator1Type, tmplocX, locY - mSpacingY - tmplocY);
+			drawIndicator(dc, mIndicator2Type, tmplocX, locY - tmplocY);
+			drawIndicator(dc, mIndicator3Type, tmplocX, locY + mSpacingY - tmplocY);
 		} else if (indicatorCount == 2) {
-			drawIndicator(dc, mIndicator1Type, locX, locY - (mSpacingY / 2));
-			drawIndicator(dc, mIndicator2Type, locX, locY + (mSpacingY / 2));
+			drawIndicator(dc, mIndicator1Type, tmplocX, locY - (mSpacingY / 2));
+			drawIndicator(dc, mIndicator2Type, tmplocX, locY + (mSpacingY / 2));
 		} else if (indicatorCount == 1) {
-			drawIndicator(dc, mIndicator1Type, locX, locY);
+			drawIndicator(dc, mIndicator1Type, tmplocX, locY);
 		}
 	}
 
@@ -78,7 +84,19 @@ class Indicators extends Ui.Drawable {
 
 		var colour;
 		if (value) {
-			colour = gThemeColour;
+		    if (App.getApp().getProperty("Theme") == THEME_COLOR_LIGHT) {
+		      if ((indicatorType == 0) or (indicatorType == 3)) { // INDICATOR_TYPE_BLUETOOTH 
+		        colour = Graphics.COLOR_DK_BLUE;
+		      } else if (indicatorType == 1) { // INDICATOR_TYPE_ALARMS
+		        colour = gThemeColour;  ///Graphics.Graphics.COLOR_YELLOW;
+		      } else if (indicatorType == 2) { // INDICATOR_TYPE_NOTIFICATIONS
+		        colour = gThemeColour;   //Graphics.COLOR_YELLOW;
+		      } else {
+		        colour = Graphics.COLOR_RED;
+		      }
+		    } else {
+			  colour = gThemeColour;
+			}
 		} else {
 			colour = gMeterBackgroundColour;
 		}

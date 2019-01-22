@@ -159,6 +159,15 @@ class CrystalApp extends App.AppBase {
 
 					pendingWebRequests["OpenWeatherMapCurrent"] = true;
 				}
+
+
+
+
+
+
+
+
+
 			}
 		}
 

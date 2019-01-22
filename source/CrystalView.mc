@@ -9,6 +9,11 @@ using Toybox.Time.Gregorian;
 
 using Toybox.Math;
 
+using Toybox.Sensor;
+using Toybox.Timer;
+
+using Toybox.SensorHistory;
+
 const INTEGER_FORMAT = "%d";
 
 var gThemeColour;
@@ -20,6 +25,7 @@ var gHoursColour;
 var gMinutesColour;
 
 var gNormalFont;
+var gMediumFont;
 var gIconsFont;
 
 const BATTERY_LINE_WIDTH = 2;
@@ -29,6 +35,24 @@ const BATTERY_MARGIN = 1;
 const BATTERY_LEVEL_LOW = 20;
 const BATTERY_LEVEL_CRITICAL = 10;
 
+enum /* THEMES */ {
+	 	THEME_BLUE_DARK,
+	 	THEME_PINK_DARK,
+	 	THEME_GREEN_DARK,
+	 	THEME_MONO_LIGHT,
+	 	THEME_CORNFLOWER_BLUE_DARK,
+	 	THEME_LEMON_CREAM_DARK,
+	 	THEME_DAYGLO_ORANGE_DARK,
+	 	THEME_RED_DARK,
+	 	THEME_MONO_DARK,
+	 	THEME_BLUE_LIGHT,
+	 	THEME_GREEN_LIGHT,
+	 	THEME_RED_LIGHT,
+	 	THEME_VIVID_YELLOW_DARK,
+	    THEME_BLACK_LIGHT,
+	    THEME_COLOR_LIGHT
+	 }	
+	
 // x, y are co-ordinates of centre point.
 // width and height are outer dimensions of battery "body".
 function drawBatteryMeter(dc, x, y, width, height) {
@@ -90,23 +114,25 @@ class CrystalView extends Ui.WatchFace {
 	// N.B. Not all watches that support SDK 2.3.0 support per-second updates e.g. 735xt.
 	private const PER_SECOND_UPDATES_SUPPORTED = Ui.WatchFace has :onPartialUpdate;
 
-	// private enum /* THEMES */ {
-	// 	THEME_BLUE_DARK,
-	// 	THEME_PINK_DARK,
-	// 	THEME_GREEN_DARK,
-	// 	THEME_MONO_LIGHT,
-	// 	THEME_CORNFLOWER_BLUE_DARK,
-	// 	THEME_LEMON_CREAM_DARK,
-	// 	THEME_DAYGLO_ORANGE_DARK,
-	// 	THEME_RED_DARK,
-	// 	THEME_MONO_DARK,
-	// 	THEME_BLUE_LIGHT,
-	// 	THEME_GREEN_LIGHT,
-	// 	THEME_RED_LIGHT,
-	// 	THEME_VIVID_YELLOW_DARK,
-	// 	THEME_DAYGLO_ORANGE_LIGHT,
-	// 	THEME_CORN_YELLOW_DARK
-	// }
+	 //private enum /* THEMES */ {
+	 //	THEME_BLUE_DARK,
+	 //	THEME_PINK_DARK,
+	 //	THEME_GREEN_DARK,
+	 //	THEME_MONO_LIGHT,
+	 //	THEME_CORNFLOWER_BLUE_DARK,
+	 //	THEME_LEMON_CREAM_DARK,
+	 //	THEME_DAYGLO_ORANGE_DARK,
+	 //	THEME_RED_DARK,
+	 //	THEME_MONO_DARK,
+	 //	THEME_BLUE_LIGHT,
+	 //	THEME_GREEN_LIGHT,
+	 //	THEME_RED_LIGHT,
+	 //	THEME_VIVID_YELLOW_DARK,
+	 //	THEME_DAYGLO_ORANGE_LIGHT,
+	 //	THEME_CORN_YELLOW_DARK
+	 // THEME_BLACK_LIGHT,
+	 // THEME_COLOR_LIGHT
+	 //}
 
 	// private enum /* COLOUR_OVERRIDES */ {
 	// 	FROM_THEME = -1,
@@ -123,8 +149,22 @@ class CrystalView extends Ui.WatchFace {
 		//Sys.println(getSunTimes(51.748124, -0.461689, null));
 	}
 
+	function timerCallback() {
+/*    	var sensorInfo = Sensor.getInfo();
+    	if (sensorInfo has :accel && sensorInfo.accel != null) {
+        	var accel = sensorInfo.accel;
+        	var xAccel = accel[0];
+        	var yAccel = accel[1];
+        	System.println("x: " + xAccel + ", y: " + yAccel);
+    	}*/
+      System.println("Call back");
+	}
+	
 	// Load your resources here
 	function onLayout(dc) {
+//		var dataTimer = new Timer.Timer();
+//		dataTimer.start(method(:timerCallback), 1000, true); // A one-second timer
+		
 		gIconsFont = Ui.loadResource(Rez.Fonts.IconsFont);
 
 		setLayout(Rez.Layouts.WatchFace(dc));
@@ -137,6 +177,7 @@ class CrystalView extends Ui.WatchFace {
 
 		mDataFields = View.findDrawableById("DataFields");
 		App.getApp().checkPendingWebRequests(); // Depends on mDataFields.hasField().
+//		mDataFields.updateWeatherIconsFont(); // Now that in-memory location is available.
 
 		setHideSeconds(App.getApp().getProperty("HideSeconds"));
 
@@ -199,6 +240,8 @@ class CrystalView extends Ui.WatchFace {
 		} else {
 			gNormalFont = Ui.loadResource(Rez.Fonts.NormalFont);
 		}
+		
+		gMediumFont = Ui.loadResource(Rez.Fonts.MediumFont);
 	}
 
 	function updateThemeColours() {
@@ -220,7 +263,9 @@ class CrystalView extends Ui.WatchFace {
 			Graphics.COLOR_DK_RED,   // THEME_RED_LIGHT
 			0xFFFF00,                // THEME_VIVID_YELLOW_DARK
 			Graphics.COLOR_ORANGE,   // THEME_DAYGLO_ORANGE_LIGHT
-			Graphics.COLOR_YELLOW    // THEME_CORN_YELLOW_DARK
+			Graphics.COLOR_YELLOW,   // THEME_CORN_YELLOW_DARK
+			Graphics.COLOR_BLACK,    // THEME_BLACK_LIGHT  
+			Graphics.COLOR_DK_BLUE   // THEME_COLOR_LIGHT			
 		][theme];
 
 		// Light/dark-specific colours.
@@ -240,6 +285,8 @@ class CrystalView extends Ui.WatchFace {
 			false, // THEME_VIVID_YELLOW_DARK
 			true,  // THEME_DAYGLO_ORANGE_LIGHT
 			false, // THEME_CORN_YELLOW_DARK
+			true,  // THEME_BLACK_LIGHT
+			true   // THEME_COLOR_LIGHT
 		];
 		if (lightFlags[theme]) {
 			gMonoLightColour = Graphics.COLOR_BLACK;
@@ -303,10 +350,59 @@ class CrystalView extends Ui.WatchFace {
 		}
 
 		updateGoalMeters();
-
+		
+		updateWeatherTrend();
+		
 		// Call the parent onUpdate function to redraw the layout
 		View.onUpdate(dc);
 	}
+
+	function getIterator() {
+    	// Check device for SensorHistory compatibility
+    	if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getPressureHistory)) {
+        	return Toybox.SensorHistory.getPressureHistory({});
+        	  	
+/*
+				// Avoid using ActivityInfo.ambientPressure, as this bypasses any manual pressure calibration e.g. on Fenix
+				// 5. Pressure is unlikely to change frequently, so there isn't the same concern with getting a "live" value,
+				// compared with HR. Use SensorHistory only.
+				if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getPressureHistory)) {
+					sample = SensorHistory.getPressureHistory(null).next();
+					if ((sample != null) && (sample.data != null)) {
+						pressure = sample.data;
+					}
+				}
+
+				if (pressure != null) {
+					unit = "mb";
+					pressure = pressure / 100; // Pa --> mbar;
+					value = pressure.format("%.1f");
+					
+					// If single decimal place doesn't fit, truncate to integer.
+					if (value.length() > mMaxFieldLength) {
+						value = pressure.format(INTEGER_FORMAT);
+
+					// Otherwise, if unit fits as well, add it.
+					} else if (value.length() + unit.length() <= mMaxFieldLength) {
+						value = value + unit;
+					}
+				}
+				break;
+
+*/        	      	      	
+    	}
+    return null;
+	}
+	
+	function updateWeatherTrend() {
+		var sensorIter = getIterator();
+
+//		System.println("UpdateWeatherTrend");
+		// Print out the next entry in the iterator
+		if (sensorIter != null) {
+    		System.println(sensorIter.next().data);
+		}	
+    }
 
 	// Update each goal meter separately, then also pass types and values to data area to draw goal icons.
 	function updateGoalMeters() {
@@ -364,6 +460,48 @@ class CrystalView extends Ui.WatchFace {
 			case GOAL_TYPE_CALORIES:
 				values[:current] = info.calories;
 				values[:max] = App.getApp().getProperty("CaloriesGoal");
+				break;
+
+			case GOAL_TYPE_HEARTH:
+			
+/*
+- Zone 1: Warm Up - 0-60% max heart rate ----- gris
+
+- Zone 2: Easy - 60-70% max heart rate   ----- bleu clair
+
+- Zone 3: Aerobic - 70-80% max heart rate  ----- vert
+
+- Zone 4: Threshold - 80-90% max heart rate  ------ orange
+
+- Zone 5: Maximum - 90-100% max heart rate   ----- rouge
+*/			
+			
+				var value = 0;
+
+				var activityInfo = Activity.getActivityInfo();
+				var sample = activityInfo.currentHeartRate;
+				if (sample != null) {
+					value = sample;    //.format(INTEGER_FORMAT);
+				} else if (ActivityMonitor has :getHeartRateHistory) {
+					sample = ActivityMonitor.getHeartRateHistory(1, /* newestFirst */ true)
+						.next();
+					if ((sample != null) && (sample.heartRate != ActivityMonitor.INVALID_HR_SAMPLE)) {
+						value = sample.heartRate;   //.format(INTEGER_FORMAT);
+					}
+				}	
+	
+//	      AddElement("maxCadence", ActInfo.maxCadence, "rpm");
+			
+				values[:current] = value;
+				var tmpmaxvalue = App.getApp().getProperty("MaxHearthGoal");
+				
+				sample = ActivityMonitor.getHeartRateHistory(null, true);
+				var  tmpmaxvalue2 = sample.getMax(); 
+				
+				if (tmpmaxvalue < tmpmaxvalue2) {
+				  tmpmaxvalue = tmpmaxvalue2; 
+				}
+				values[:max] = tmpmaxvalue;
 				break;
 		}
 
@@ -595,3 +733,28 @@ class CrystalView extends Ui.WatchFace {
 		};
 	}
 }
+
+/*
+using Toybox.SensorHistory;
+using Toybox.Lang;
+using Toybox.System;
+
+// Create a method to get the SensorHistoryIterator object
+function getIterator() {
+    // Check device for SensorHistory compatibility
+    if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getPressureHistory)) {
+        return Toybox.SensorHistory.getPressureHistory({});
+    }
+    return null;
+}
+
+// Store the iterator info in a variable. The options are 'null' in
+// this case so the entire available history is returned with the
+// newest samples returned first.
+var sensorIter = getIterator();
+
+// Print out the next entry in the iterator
+if (sensorIter != null) {
+    System.println(sensorIter.next().data);
+}
+*/

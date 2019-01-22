@@ -8,13 +8,25 @@
 			<!--listEntry value="4">@Strings.ThemeCornflowerBlueDark</listEntry-->
 			<!--listEntry value="5">@Strings.ThemeLemonCreamDark</listEntry-->
 			<!--listEntry value="12">@Strings.ThemeVividYellowDark</listEntry-->
+			<listEntry value="14">@Strings.ThemeCornYellowDark</listEntry>
 			<listEntry value="6">@Strings.ThemeDaygloOrangeDark</listEntry>
 			<listEntry value="8">@Strings.ThemeMonoDark</listEntry>
 			<listEntry value="3">@Strings.ThemeMonoLight</listEntry>
 			<listEntry value="9">@Strings.ThemeBlueLight</listEntry>
 			<listEntry value="10">@Strings.ThemeGreenLight</listEntry>
 			<listEntry value="11">@Strings.ThemeRedLight</listEntry>
+<<<<<<< Updated upstream
+			<listEntry value="13">@Strings.ThemeDaygloOrangeLight</listEntry>
+=======
+			<listEntry value="13">@Strings.ThemeBlackLight</listEntry>
+
+>>>>>>> Stashed changes
+			<listEntry value="15">@Strings.ThemeColorLight</listEntry>
 		</settingConfig>
+	</setting>
+
+	<setting propertyKey="@Properties.DisplayJpg63" title="@Strings.DisplayJpg63Title">
+		<settingConfig type="boolean"/>
 	</setting>
 
 	<setting propertyKey="@Properties.LeftGoalType" title="@Strings.LeftGoalMeterTitle">
@@ -24,6 +36,7 @@
 			<!--listEntry value="2">@Strings.ActiveMinutes</listEntry-->
 			<listEntry value="-1">@Strings.Battery</listEntry>
 			<listEntry value="-2">@Strings.CaloriesManualGoal</listEntry>
+			<listEntry value="-3">@Strings.HeartRate</listEntry>
 		</settingConfig>
 	</setting>
 
@@ -34,6 +47,7 @@
 			<!--listEntry value="2">@Strings.ActiveMinutes</listEntry-->
 			<listEntry value="-1">@Strings.Battery</listEntry>
 			<listEntry value="-2">@Strings.CaloriesManualGoal</listEntry>
+			<listEntry value="-3">@Strings.HeartRate</listEntry>
 		</settingConfig>
 	</setting>
 
@@ -48,6 +62,7 @@
 			<listEntry value="4">@Strings.Distance</listEntry>
 			<listEntry value="5">@Strings.Alarms</listEntry>
 			<listEntry value="6">@Strings.Altitude</listEntry>
+			<!--listEntry value="12">@Strings.Pressure</listEntry-->
 			<!--listEntry value="7">@Strings.Temperature</listEntry-->
 			<listEntry value="10">@Strings.SunriseSunset</listEntry>
 			<!--listEntry value="11">@Strings.Weather</listEntry-->
@@ -65,6 +80,7 @@
 			<listEntry value="4">@Strings.Distance</listEntry>
 			<listEntry value="5">@Strings.Alarms</listEntry>
 			<listEntry value="6">@Strings.Altitude</listEntry>
+			<!--listEntry value="12">@Strings.Pressure</listEntry-->
 			<!--listEntry value="7">@Strings.Temperature</listEntry-->
 			<listEntry value="10">@Strings.SunriseSunset</listEntry>
 			<!--listEntry value="11">@Strings.Weather</listEntry-->
@@ -82,16 +98,17 @@
 			<listEntry value="4">@Strings.Distance</listEntry>
 			<listEntry value="5">@Strings.Alarms</listEntry>
 			<listEntry value="6">@Strings.Altitude</listEntry>
+			<!--listEntry value="12">@Strings.Pressure</listEntry-->
 			<!--listEntry value="7">@Strings.Temperature</listEntry-->
 			<listEntry value="10">@Strings.SunriseSunset</listEntry>
 			<!--listEntry value="11">@Strings.Weather</listEntry-->
 		</settingConfig>
-	</setting>
 
-	<!-- CIQ 1.x watches do not support background services. -->
-	<!-- TODO: Can we hide these settings completely? -->
-	<setting propertyKey="@Properties.OpenWeatherMapKey" title="@Strings.OpenWeatherMapKeyTitle">
-		<settingConfig type="alphaNumeric" readonly="true"/>
+
+
+
+
+
 	</setting>
 	
 	<setting propertyKey="@Properties.LocalTimeInCity" title="@Strings.LocalTimeInCityTitle">

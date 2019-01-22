@@ -154,11 +154,29 @@ class DataArea extends Ui.Drawable {
 			GOAL_TYPE_STEPS => "0",
 			GOAL_TYPE_FLOORS_CLIMBED => "1",
 			GOAL_TYPE_ACTIVE_MINUTES => "2",
+			GOAL_TYPE_HEARTH => "3",
 		}[type];
 
 		var colour;
 		if (isValid) {
+		  if (App.getApp().getProperty("Theme") == THEME_COLOR_LIGHT) {
+		    if (type == GOAL_TYPE_HEARTH) {
+		      colour = Graphics.COLOR_DK_RED;
+		    } else if (type == GOAL_TYPE_CALORIES) {
+		      colour = Graphics.COLOR_ORANGE;
+		    } else if (type == GOAL_TYPE_STEPS) {
+		      colour = Graphics.COLOR_PURPLE;
+		    } else if (type == GOAL_TYPE_ACTIVE_MINUTES) {
+		      colour = Graphics.COLOR_DK_GREEN;
+		    } else if (type == GOAL_TYPE_FLOORS_CLIMBED) {
+		      colour = Graphics.COLOR_YELLOW;
+		    } else {
+			  colour = gThemeColour;
+		    }
+		  }
+		  else {
 			colour = gThemeColour;
+		  }
 		} else {
 			colour = gMeterBackgroundColour;
 		}
@@ -179,7 +197,7 @@ class DataArea extends Ui.Drawable {
 			dc.drawText(
 				x,
 				mRow1Y,
-				gNormalFont,
+				gMediumFont,		//gNormalFont,
 				currentValue,
 				align | Graphics.TEXT_JUSTIFY_VCENTER
 			);
