@@ -22,7 +22,18 @@ The techie bit: to save your watch battery, the goal meters and move bar are dra
 
 This is my first ever Connect IQ watch face (please be kind!), so I look forward to your feedback, improving the watch face, and bringing it to more devices.
 
+Reviews:
+- Video review in Spanish, by Sergio: https://www.youtube.com/watch?v=TZFhnm_y1MM.
+
 ## What's New
+
+### 2.3.0
+- Increase time font size and revise layouts for all watches.
+- Single line time for vívoactive® HR.
+
+### 2.2.6
+- Add "Humidity" data field (uses OpenWeatherMap). Many thanks to jrmcsoftware for implementing this.
+- Technical update to CIQ 3.0.8 SDK.
 
 ### 2.2.5
 - "Pressure" data field should use historical data, to respect manual pressure calibration on fēnix® 5 watches (thanks to Allalin72 for help with this).
@@ -178,3 +189,4 @@ Icons:
 - "[Upstairs](https://thenounproject.com/term/upstairs/304907/)" icon by Arthur Shlain from [the Noun Project](https://thenounproject.com).
 - "[Stopwatch](https://thenounproject.com/term/stopwatch/319102/)" icon by Rohith M S from [the Noun Project](https://thenounproject.com).
 - "[Mountains](https://thenounproject.com/term/mountains/1468194/)" icon by Deemak Daksina from [the Noun Project](https://thenounproject.com).
+- "[Humidity](https://thenounproject.com/term/humidity/1554816/)" icon by Akriti Bhusal from [the Noun Project](https://thenounproject.com).

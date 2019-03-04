@@ -27,6 +27,7 @@ enum /* FIELD_TYPES */ {
 	FIELD_TYPE_HR_LIVE_5S,
 	FIELD_TYPE_SUNRISE_SUNSET,
 	FIELD_TYPE_WEATHER,
+	FIELD_TYPE_PRESSURE,
 	FIELD_TYPE_WEATHER_TREND
 }
 
@@ -366,7 +367,8 @@ class DataFields extends Ui.Drawable {
 					// FIELD_TYPE_WEATHER => "<",
 					// LIVE_HR_SPOT => "=",
 
-					FIELD_TYPE_SUNRISE_SUNSET => "?"
+					FIELD_TYPE_SUNRISE_SUNSET => "?",
+					FIELD_TYPE_PRESSURE => "@"
 				}[fieldType];
 			}
 
@@ -440,7 +442,7 @@ class DataFields extends Ui.Drawable {
 			dc.clear();
 		}
 	
-	  var value = 1;
+	  var value = -3;
 	  var arrow = [ [120,200], [120,198], [125,200], [120, 204], [120, 200] ];
 	  
       switch (value) {
@@ -497,6 +499,7 @@ class DataFields extends Ui.Drawable {
 		var activityInfo;
 		var sample;	
 		var altitude;
+		var pressure = null; // May never be initialised if no support for pressure (CIQ 1.x devices).
 		var temperature;
 		var sunTimes;
 		var unit;
@@ -601,8 +604,10 @@ class DataFields extends Ui.Drawable {
 
 			case FIELD_TYPE_TEMPERATURE:
 				if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getTemperatureHistory)) {
-					sample = SensorHistory.getTemperatureHistory({ :period => 1, :order => SensorHistory.ORDER_NEWEST_FIRST })
-						.next();
+//					sample = SensorHistory.getTemperatureHistory({ :period => 1, :order => SensorHistory.ORDER_NEWEST_FIRST })
+//						.next();
+					sample = SensorHistory.getTemperatureHistory(null).next();
+
 					if ((sample != null) && (sample.data != null)) {
 						temperature = sample.data;
 
@@ -704,14 +709,6 @@ class DataFields extends Ui.Drawable {
 							result["weatherIcon"] = weather["icon"];
 						
 
-
-
-
-
-
-
-
-
 					// Awaiting response.
 					} else if (App.Storage.getValue("PendingWebRequests")["OpenWeatherMapCurrent"]) {
 						value = "...";
@@ -720,6 +717,35 @@ class DataFields extends Ui.Drawable {
 				break;
 			case FIELD_TYPE_WEATHER_TREND:
 				break;	
+
+			case FIELD_TYPE_PRESSURE:
+
+				// Avoid using ActivityInfo.ambientPressure, as this bypasses any manual pressure calibration e.g. on Fenix
+				// 5. Pressure is unlikely to change frequently, so there isn't the same concern with getting a "live" value,
+				// compared with HR. Use SensorHistory only.
+				if ((Toybox has :SensorHistory) && (Toybox.SensorHistory has :getPressureHistory)) {
+					sample = SensorHistory.getPressureHistory(null).next();
+					if ((sample != null) && (sample.data != null)) {
+						pressure = sample.data;
+					}
+				}
+
+				if (pressure != null) {
+					unit = "mb";
+					pressure = pressure / 100; // Pa --> mbar;
+					value = pressure.format("%.1f");
+					
+					// If single decimal place doesn't fit, truncate to integer.
+					if (value.length() > mMaxFieldLength) {
+						value = pressure.format(INTEGER_FORMAT);
+
+					// Otherwise, if unit fits as well, add it.
+					} else if (value.length() + unit.length() <= mMaxFieldLength) {
+						value = value + unit;
+					}
+				}
+				break;
+
 		}
 
 		result["value"] = value;

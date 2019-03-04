@@ -76,6 +76,7 @@
 	<string id="BluetoothOrNotifications">Bluetooth/Notifications</string>
 	<string id="SunriseSunset">lever/coucher du soleil</string>
 	<string id="Weather">Meteo</string>
+	<string id="Humidity">Humidity</string>
 	<string id="Pressure">Pression</string>
 
 	<!-- Internal use only. Required because fonts cannot be overridden by locale. Leave blank for no override. -->

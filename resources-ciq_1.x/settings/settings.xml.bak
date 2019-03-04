@@ -15,13 +15,9 @@
 			<listEntry value="9">@Strings.ThemeBlueLight</listEntry>
 			<listEntry value="10">@Strings.ThemeGreenLight</listEntry>
 			<listEntry value="11">@Strings.ThemeRedLight</listEntry>
-<<<<<<< Updated upstream
 			<listEntry value="13">@Strings.ThemeDaygloOrangeLight</listEntry>
-=======
-			<listEntry value="13">@Strings.ThemeBlackLight</listEntry>
-
->>>>>>> Stashed changes
-			<listEntry value="15">@Strings.ThemeColorLight</listEntry>
+			<listEntry value="15">@Strings.ThemeBlackLight</listEntry>
+			<listEntry value="16">@Strings.ThemeColorLight</listEntry>
 		</settingConfig>
 	</setting>
 
@@ -62,10 +58,11 @@
 			<listEntry value="4">@Strings.Distance</listEntry>
 			<listEntry value="5">@Strings.Alarms</listEntry>
 			<listEntry value="6">@Strings.Altitude</listEntry>
-			<!--listEntry value="12">@Strings.Pressure</listEntry-->
+			<listEntry value="12">@Strings.Pressure</listEntry>
 			<!--listEntry value="7">@Strings.Temperature</listEntry-->
 			<listEntry value="10">@Strings.SunriseSunset</listEntry>
 			<!--listEntry value="11">@Strings.Weather</listEntry-->
+			<!--listEntry value="13">@Strings.Humidity</listEntry-->
 		</settingConfig>
 	</setting>
 
@@ -80,10 +77,11 @@
 			<listEntry value="4">@Strings.Distance</listEntry>
 			<listEntry value="5">@Strings.Alarms</listEntry>
 			<listEntry value="6">@Strings.Altitude</listEntry>
-			<!--listEntry value="12">@Strings.Pressure</listEntry-->
+			<listEntry value="12">@Strings.Pressure</listEntry>
 			<!--listEntry value="7">@Strings.Temperature</listEntry-->
 			<listEntry value="10">@Strings.SunriseSunset</listEntry>
 			<!--listEntry value="11">@Strings.Weather</listEntry-->
+			<!--listEntry value="13">@Strings.Humidity</listEntry-->
 		</settingConfig>
 	</setting>
 
@@ -98,16 +96,12 @@
 			<listEntry value="4">@Strings.Distance</listEntry>
 			<listEntry value="5">@Strings.Alarms</listEntry>
 			<listEntry value="6">@Strings.Altitude</listEntry>
-			<!--listEntry value="12">@Strings.Pressure</listEntry-->
+			<listEntry value="12">@Strings.Pressure</listEntry>
 			<!--listEntry value="7">@Strings.Temperature</listEntry-->
 			<listEntry value="10">@Strings.SunriseSunset</listEntry>
 			<!--listEntry value="11">@Strings.Weather</listEntry-->
+			<!--listEntry value="13">@Strings.Humidity</listEntry-->
 		</settingConfig>
-
-
-
-
-
 
 	</setting>
 	

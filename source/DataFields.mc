@@ -28,6 +28,7 @@ enum /* FIELD_TYPES */ {
 	FIELD_TYPE_SUNRISE_SUNSET,
 	FIELD_TYPE_WEATHER,
 	FIELD_TYPE_PRESSURE,
+	FIELD_TYPE_HUMIDITY,
 	FIELD_TYPE_WEATHER_TREND
 }
 
@@ -368,7 +369,8 @@ class DataFields extends Ui.Drawable {
 					// LIVE_HR_SPOT => "=",
 
 					FIELD_TYPE_SUNRISE_SUNSET => "?",
-					FIELD_TYPE_PRESSURE => "@"
+					FIELD_TYPE_PRESSURE => "@",
+					FIELD_TYPE_HUMIDITY => "A",
 				}[fieldType];
 			}
 
@@ -501,6 +503,7 @@ class DataFields extends Ui.Drawable {
 		var altitude;
 		var pressure = null; // May never be initialised if no support for pressure (CIQ 1.x devices).
 		var temperature;
+		var humidity;
 		var sunTimes;
 		var unit;
 
@@ -708,6 +711,27 @@ class DataFields extends Ui.Drawable {
 							value = temperature.format(INTEGER_FORMAT) + "°";
 							result["weatherIcon"] = weather["icon"];
 						
+					// Awaiting response.
+					} else if (App.Storage.getValue("PendingWebRequests")["OpenWeatherMapCurrent"]) {
+						value = "...";
+					}
+				}
+				break;
+
+			case FIELD_TYPE_HUMIDITY:
+
+				if (App has :Storage) {
+					var weather = App.Storage.getValue("OpenWeatherMapCurrent");
+
+					// Awaiting location.
+					if (gLocationLat == -360.0) { // -360.0 is a special value, meaning "unitialised". Can't have null float property.
+						value = "gps?";
+
+					// Stored weather data available.
+					} else if ((weather != null) && (weather["humidity"] != null)) {
+						humidity = weather["humidity"];
+
+						value = humidity.format(INTEGER_FORMAT) + "%";
 
 					// Awaiting response.
 					} else if (App.Storage.getValue("PendingWebRequests")["OpenWeatherMapCurrent"]) {
