@@ -83,9 +83,9 @@ function drawBatteryMeter(dc, x, y, width, height) {
 
 	// Fill colour based on battery level.
 	var fillColour;
-	if (batteryLevel <= BATTERY_LEVEL_CRITICAL) {
+	if (batteryLevel <= /* BATTERY_LEVEL_CRITICAL */ 10) {
 		fillColour = Graphics.COLOR_RED;
-	} else if (batteryLevel <= BATTERY_LEVEL_LOW) {
+	} else if (batteryLevel <= /* BATTERY_LEVEL_LOW */ 20) {
 		fillColour = Graphics.COLOR_YELLOW;
 	} else {
 		fillColour = gThemeColour;
@@ -249,13 +249,8 @@ class CrystalView extends Ui.WatchFace {
 		var city = App.getApp().getProperty("LocalTimeInCity");
 
 		// #78 Setting with value of empty string may cause corresponding property to be null.
-		if ((city != null) && (city.length() > 0)) {
-			gNormalFont = Ui.loadResource(Rez.Fonts.NormalFontCities);
-		} else {
-			gNormalFont = Ui.loadResource(Rez.Fonts.NormalFont);
-		}
-		
-		gMediumFont = Ui.loadResource(Rez.Fonts.MediumFont);
+		gNormalFont = Ui.loadResource(((city != null) && (city.length() > 0)) ?
+			Rez.Fonts.NormalFontCities : Rez.Fonts.NormalFont);
 	}
 
 	function updateThemeColours() {
@@ -412,11 +407,11 @@ class CrystalView extends Ui.WatchFace {
 	function updateGoalMeters() {
 		var leftType = App.getApp().getProperty("LeftGoalType");
 		var leftValues = getValuesForGoalType(leftType);
-		mDrawables[:LeftGoalMeter].setValues(leftValues[:current], leftValues[:max]);
+		mDrawables[:LeftGoalMeter].setValues(leftValues[:current], leftValues[:max], /* isOff */ leftType == GOAL_TYPE_OFF);
 
 		var rightType = App.getApp().getProperty("RightGoalType");
 		var rightValues = getValuesForGoalType(rightType);
-		mDrawables[:RightGoalMeter].setValues(rightValues[:current], rightValues[:max]);
+		mDrawables[:RightGoalMeter].setValues(rightValues[:current], rightValues[:max], /* isOff */ rightType == GOAL_TYPE_OFF);
 
 		mDrawables[:DataArea].setGoalValues(leftType, leftValues, rightType, rightValues);
 	}
@@ -429,6 +424,7 @@ class CrystalView extends Ui.WatchFace {
 		};
 
 		var info = ActivityMonitor.getInfo();
+		var caloriesGoal;
 
 		switch(type) {
 			case GOAL_TYPE_STEPS:
@@ -463,7 +459,15 @@ class CrystalView extends Ui.WatchFace {
 
 			case GOAL_TYPE_CALORIES:
 				values[:current] = info.calories;
-				values[:max] = App.getApp().getProperty("CaloriesGoal");
+
+				// #123 Protect against null value returned by getProperty(). Trigger invalid goal handling code below.
+				// Protect against unexpected type e.g. String.
+				caloriesGoal = App.getApp().getProperty("CaloriesGoal");
+				values[:max] = (caloriesGoal == null) ? 0 : caloriesGoal.toNumber();
+				break;
+
+			case GOAL_TYPE_OFF:
+				values[:isValid] = false;
 				break;
 
 			case GOAL_TYPE_HEARTH:
@@ -528,11 +532,13 @@ class CrystalView extends Ui.WatchFace {
 		mTime.drawSeconds(dc, /* isPartialUpdate */ true);
 	}
 
+	/*
 	// Called when this View is removed from the screen. Save the
 	// state of this View here. This includes freeing resources from
 	// memory.
 	function onHide() {
 	}
+	*/
 
 	// The user has just looked at their watch. Timers and animations may be started here.
 	function onExitSleep() {
@@ -632,7 +638,7 @@ class CrystalView extends Ui.WatchFace {
 		var MFloor = Math.floor(M);
 		var MFrac = M - MFloor;
 		M = MFloor.toLong() % 360;
-		M = M + MFrac;
+		M += MFrac;
 		//Sys.println("M " + M);
 
 		// Equation of the centre.
@@ -646,7 +652,7 @@ class CrystalView extends Ui.WatchFace {
 		var lambdaFloor = Math.floor(lambda);
 		var lambdaFrac = lambda - lambdaFloor;
 		lambda = lambdaFloor.toLong() % 360;
-		lambda = lambda + lambdaFrac;
+		lambda += lambdaFrac;
 		//Sys.println("lambda " + lambda);
 
 		// Solar transit.
@@ -681,16 +687,11 @@ class CrystalView extends Ui.WatchFace {
 		var deltaJSet = jSet - jDate;
 		var deltaJRise = jRise - jDate;
 
-		var tzOffset;
-		if (tz == null) {
-			tzOffset = (Sys.getClockTime().timeZoneOffset / 3600);
-		} else {
-			tzOffset = tz;
-		}
-		
-		var localRise = (deltaJRise * 24) + tzOffset;
-		var localSet = (deltaJSet * 24) + tzOffset;
-		return [localRise, localSet];
+		var tzOffset = (tz == null) ? (Sys.getClockTime().timeZoneOffset / 3600) : tz;
+		return [
+			/* localRise */ (deltaJRise * 24) + tzOffset,
+			/* localSet */ (deltaJSet * 24) + tzOffset
+		];
 	}
 
 	// Return a formatted time dictionary that respects is24Hour and HideHoursLeadingZero settings.

@@ -43,7 +43,9 @@ class Indicators extends Ui.Drawable {
 	}
 
 	function draw(dc) {
+		// #123 Protect against null or unexpected type e.g. String.
 		var indicatorCount = App.getApp().getProperty("IndicatorCount");
+		indicatorCount = (indicatorCount == null) ? 0 : indicatorCount.toNumber();
 			
 		if (App.getApp().getProperty("DisplayJpg63") == true) { 
 		  tmplocX = 180; 

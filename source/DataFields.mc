@@ -66,7 +66,10 @@ class DataFields extends Ui.Drawable {
 
 	// Cache FieldCount setting, and determine appropriate maximum field length.
 	function onSettingsChanged() {
+
+		// #123 Protect against null or unexpected type e.g. String.
 		mFieldCount = App.getApp().getProperty("FieldCount");
+		mFieldCount = (mFieldCount == null) ? 0 : mFieldCount.toNumber();
 
 		/* switch (mFieldCount) {
 			case 3:
@@ -79,7 +82,9 @@ class DataFields extends Ui.Drawable {
 				mMaxFieldLength = 8;
 				break;
 		} */
-		mMaxFieldLength = [8, 6, 4][mFieldCount - 1];
+		
+		// #116 Handle FieldCount = 0 correctly.
+		mMaxFieldLength = [0, 8, 6, 4][mFieldCount];
 
 		mFieldTypes[0] = App.getApp().getProperty("Field1Type");
 		mFieldTypes[1] = App.getApp().getProperty("Field2Type");
@@ -707,7 +712,9 @@ class DataFields extends Ui.Drawable {
 					result["weatherIcon"] = weather["icon"];
 
 				// Awaiting response.
-				} else if (App.getApp().getProperty("PendingWebRequests")["OpenWeatherMapCurrent"]) {
+				} else if ((App.getApp().getProperty("PendingWebRequests") != null) &&
+					App.getApp().getProperty("PendingWebRequests")["OpenWeatherMapCurrent"]) {
+
 					value = "...";
 				}
 				break;
@@ -727,7 +734,9 @@ class DataFields extends Ui.Drawable {
 					value = humidity.format(INTEGER_FORMAT) + "%";
 
 				// Awaiting response.
-				} else if (App.getApp().getProperty("PendingWebRequests")["OpenWeatherMapCurrent"]) {
+				} else if ((App.getApp().getProperty("PendingWebRequests") != null) &&
+					App.getApp().getProperty("PendingWebRequests")["OpenWeatherMapCurrent"]) {
+						
 					value = "...";
 				}
 				break;

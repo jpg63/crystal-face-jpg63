@@ -1,0 +1,28 @@
+<properties>
+
+	<!-- CIQ 1.x devices do not support Floors or Active Minutes, so show Battery in right meter, and Calories in centre field -->
+
+	<property id="Theme" type="number">9</property>
+
+	<property id="HoursColourOverride" type="number">1</property>
+	<property id="MinutesColourOverride" type="number">1</property>
+
+	<property id="LeftGoalType" type="number">-2</property>
+	<property id="RightGoalType" type="number">-3</property>
+	
+	<property id="FieldCount" type="number">2</property>
+	<property id="Field1Type" type="number">6</property>
+	<property id="Field2Type" type="number">10</property>
+
+	<property id="IndicatorCount" type="number">2</property>
+	<property id="Indicator1Type" type="number">1</property>
+	<property id="Indicator2Type" type="number">4</property>
+	
+	<property id="MoveBarStyle" type="number">2</property>
+	
+	<property id="HideSeconds" type="boolean">false</property>
+	<property id="HideHoursLeadingZero" type="boolean">false</property>
+	<property id="SimpleDate" type="boolean">true</property>
+
+	<property id="DisplayJpg63" type="boolean">true</property>
+</properties>

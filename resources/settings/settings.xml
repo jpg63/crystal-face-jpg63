@@ -129,10 +129,6 @@
 		</settingConfig>
 	</setting>
 
-
-
-
-
 	<setting propertyKey="@Properties.IndicatorCount" title="@Strings.IndicatorCountTitle">
 		<settingConfig type="numeric" min="0" max="3" required="true"/>
 	</setting>
@@ -192,6 +188,10 @@
 	</setting>
 
 	<setting propertyKey="@Properties.SimpleDate" title="@Strings.SimpleDateTitle">
+		<settingConfig type="boolean"/>
+	</setting>
+
+	<setting propertyKey="@Properties.HideDate" title="@Strings.HideDateTitle">
 		<settingConfig type="boolean"/>
 	</setting>
 

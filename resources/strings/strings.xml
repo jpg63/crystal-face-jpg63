@@ -17,7 +17,8 @@
 	<string id="HideHoursLeadingZeroTitle">Hide Hours Leading Zero</string>
 	<string id="SimpleDateTitle">date in digital format</string>
 	<string id="DisplayJpg63Title">Theme Display Jpg63</string>
-	
+	<string id="HideDateTitle">Hide Display Date</string>
+
 	<string id="FieldCountTitle">Number Of Data Fields</string>
 	<string id="DataField1Title">Data Field 1</string>
 	<string id="DataField2Title">Data Field 2</string>

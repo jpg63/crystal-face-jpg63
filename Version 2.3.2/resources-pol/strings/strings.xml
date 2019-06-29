@@ -1,0 +1,100 @@
+<strings>
+
+	<string id="AppName">Crystal</string>
+	<string id="AppVersionTitle">Wersja</string>
+
+	<string id="ThemeTitle">Motyw</string>
+	<string id="HoursColourTitle">Kolor Godzin</string>
+	<string id="MinutesColourTitle">Kolor Minut</string>
+	<string id="LeftGoalMeterTitle">Lewy Wskaźnik</string>
+	<string id="RightGoalMeterTitle">Prawy Wskaźnik</string>
+	<string id="CaloriesGoalTitle">Spalone Kalorie - Cel (1-10,000kCal)</string>
+	<string id="GoalMeterStyleTitle">Wygląd Wskaźnika</string>
+	<string id="LocalTimeInCityTitle">Add Local Time in City (Beta)</string><!-- TODO_TRANSLATE -->
+	<string id="MoveBarStyleTitle">Wygląd Move Bar'a</string>
+	<string id="HideSecondsTitle">Ukryj Sekundy</string>
+	<string id="HideHoursLeadingZeroTitle">Ukryj Zero Poprzedzające Godzinę</string>
+
+	<string id="FieldCountTitle">Liczba Pól z Danymi</string>
+	<string id="DataField1Title">Pole Danych 1</string>
+	<string id="DataField2Title">Pole Danych 2</string>
+	<string id="DataField3Title">Pole Danych 3</string>
+
+	<string id="IndicatorCountTitle">Liczba Wskaźników</string>
+	<string id="Indicator1Title">Wskaźnik 1</string>
+	<string id="Indicator2Title">Wskaźnik 2</string>
+	<string id="Indicator3Title">Wskaźnik 3</string>
+
+	<string id="FromTheme">(z Motywu)</string>
+	<string id="MonoHighlight">Pojedyncze Wyróżnienie</string>
+	<string id="Mono">Mono</string>
+
+	<string id="MultiSegments">Wiele Segmentów</string>
+	<string id="SingleSegment">Jeden Segment</string>
+	<string id="ShowAllSegments">Pokaż Wszystkie Segmenty</string>
+	<string id="ShowFilledSegments">Pokaż Wypełnione Segmenty</string>
+	<string id="Hidden">Ukryte</string>
+
+	<string id="ThemeBlueDark">Niebieski (Ciemny)</string>
+	<string id="ThemePinkDark">Różowy (Ciemny)</string>
+	<string id="ThemeRedDark">Czerwony (Ciemny)</string>
+	<string id="ThemeGreenDark">Zielony (Ciemny)</string>
+	<string id="ThemeCornflowerBlueDark">Modry (Ciemny)</string>
+	<string id="ThemeLemonCreamDark">Śmietanka Cytrynowa (Ciemny)</string>
+	<string id="ThemeVividYellowDark">Żywy Żółty (Ciemny)</string>
+	<string id="ThemeDaygloOrangeDark">Rażący Pomarańczowy (Ciemny)</string>
+	<string id="ThemeMonoDark">Mono (Ciemny)</string>
+	<string id="ThemeMonoLight">Mono (Jasny)</string>
+	<string id="ThemeBlueLight">Niebieski (Jasny)</string>
+	<string id="ThemeRedLight">Czerwony (Jasny)</string>
+	<string id="ThemeGreenLight">Zielony (Jasny)</string>
+	<string id="ThemeDaygloOrangeLight">Rażący Pomarańczowy (Jasny)</string>
+	<string id="ThemeCornYellowDark">Corn Yellow (Ciemny)</string><!-- TODO_TRANSLATE -->
+
+	<string id="Steps">Kroki</string>
+	<string id="FloorsClimbed">Pokonane Piętra</string>
+	<string id="ActiveMinutes">Aktywne Minuty (Tygodniowo)</string>
+	<string id="CaloriesManualGoal">Spalone Kalorie (Ręczny Cel)</string>
+
+	<string id="HeartRate">Tętno</string>
+	<string id="HeartRateLive5s">Tętno (Live 5s)</string>
+	<string id="Battery">Bateria</string>
+	<string id="BatteryHidePercentage">Bateria (Sama Wartość)</string>
+	<string id="Notifications">Powiadomienia</string>
+	<string id="Calories">Kalorie</string>
+	<string id="Distance">Odległość</string>
+	<string id="Alarms">Budziki</string>
+	<string id="Altitude">Wysokość</string>
+	<string id="Temperature">Termometr</string>
+	<string id="Bluetooth">Bluetooth</string>
+	<string id="BluetoothOrNotifications">Bluetooth/Powiadomienia</string>
+	<string id="SunriseSunset">Sunrise/Sunset</string>
+	<string id="Weather">Pogoda</string>
+	<string id="Humidity">Humidity</string><!-- TODO_TRANSLATE possibly Wilgotność -->
+	<string id="Pressure">Ciśnienie</string>
+
+	<!-- Internal use only. Required because fonts cannot be overridden by locale. Leave blank for no override. -->
+	<string id="DATE_FONT_OVERRIDE"></string>	
+
+	<string id="Sun">Nie</string>
+	<string id="Mon">Pn</string>
+	<string id="Tue">Wt</string>
+	<string id="Wed">Śr</string>
+	<string id="Thu">Cz</string>
+	<string id="Fri">Pt</string>
+	<string id="Sat">So</string>
+
+	<string id="Jan">Sty</string>
+	<string id="Feb">Lut</string>
+	<string id="Mar">Mar</string>
+	<string id="Apr">Kwi</string>
+	<string id="May">Maj</string>
+	<string id="Jun">Cze</string>
+	<string id="Jul">Lip</string>
+	<string id="Aug">Sie</string>
+	<string id="Sep">Wrz</string>
+	<string id="Oct">Paź</string>
+	<string id="Nov">Lis</string>
+	<string id="Dec">Gru</string>
+
+</strings>

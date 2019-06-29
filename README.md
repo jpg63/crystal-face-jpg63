@@ -27,9 +27,19 @@ Reviews:
 
 ## What's New
 
+### 2.3.4
+- Fix crash when changing numeric settings (e.g. "Calories Goal") using Connect IQ Store app.
+
+### 2.3.3
+- New Meter Style options, and new Meter Digits Style setting.
+- Fix issue when setting field or indicator count to 0.
+- Fix display of weather icon on Forerunner® 735XT.
+- Fix German translation typo.
+- Technical update to CIQ 3.0.11 SDK. Add support for Forerunner® 245/245 Music/945 and vívolife.
+
 ### 2.3.2
 - Fix issues with weather and humidity not updating.
-- Technical update to CIQ 3.0.10 SDK. Add support for MARQâ„¢ series and vÃ­voactiveÂ® 3 Mercedes-Benz.
+- Technical update to CIQ 3.0.10 SDK. Add support for MARQ™ series and vívoactive® 3 Mercedes-Benz.
 
 ### 2.3.1
 - Putative fix for intermittent storage-related crashes on fÄ“nixÂ® 5 series, vÃ­voactiveÂ® 3 series and ApproachÂ® S60.

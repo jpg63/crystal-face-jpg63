@@ -1,0 +1,26 @@
+<fonts>
+	<font id="HoursFont" filename="titillium-web-bold-68-tall.fnt" antialias="true"/>
+	<font id="HoursFont2" filename="javanese-bold-84.fnt" antialias="true"/> 
+	<font id="MinutesFont" filename="titillium-web-light-68-tall.fnt" antialias="true"/>	<font id="MinutesFont2" filename="javanese-ligth-84.fnt" antialias="true"/> 
+	<font id="SecondsFont" filename="titillium-web-semibold-24.fnt" antialias="true" filter="0123456789AP"/>
+	<font id="DateFont" filename="titillium-web-semibold-24.fnt" antialias="true" filter=" 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZÁÄÅÉÍÖØÚČĚŘŚŠŹŽ"/>
+	<!--font id="NormalFont" filename="titillium-web-semibold-16.fnt" antialias="true" filter="%-.0123456789!:?CFabefgikmpsty°"/ -->
+<!--	<font id="NormalFont" filename="titillium-web-semibold-20F.fnt" antialias="true" filter="%-.0123456789!:?CFaefgikmpsty°"/> -->
+	<font id="NormalFont" filename="titillium-web-semibold-16.fnt" antialias="true" filter="%-.0123456789!:?CFabefgikmpsty°"/>
+	<font id="MediumFont" filename="titillium-web-semibold-20.fnt" antialias="true" filter="%-.0123456789!:?CFaefgikmpsty°"/>
+	<font id="NormalFontCities" filename="titillium-web-semibold-16.fnt" antialias="true" filter=" %',-.0123456789!:?ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz°ÅÍÎÖáãäåæèéíðñóôöøûüž"/>
+	<!-- font id="IconsFont" filename="crystal-icons.fnt" antialias="true"/ -->
+	<font id="IconsFont" filename="crystal-icons-small.fnt" antialias="true"/>
+	<font id="DateFont2" filename="javanese32.fnt" antialias="true"/>
+
+	<!-- Font size chosen such that height of sunshine icon is 24px -->
+	<!-- JavaScript: String.fromCharCode(61453, 61452, 61442, 61459, 61449, 61448, 61445, 61450, 61441) -->
+	<font id="WeatherIconsFontDay" filename="weather-icons-24.fnt" antialias="true" filter=""/>
+	<!-- JavaScript: String.fromCharCode(61486, 61569, 61574, 61459, 61481, 61480, 61477, 61482, 61475) -->
+	<font id="WeatherIconsFontNight" filename="weather-icons-24.fnt" antialias="true" filter=""/>
+
+	<!-- Locale-specific manual date font overrides, because fonts cannot automatically be overridden by locale -->
+	<font id="DateFontOverrideZHS" filename="noto-sans-cjk-sc-medium-24.fnt" antialias="true"/>
+	<font id="DateFontOverrideZHT" filename="noto-sans-cjk-tc-medium-24.fnt" antialias="true"/>
+	<font id="DateFontOverrideRUS" filename="noto-sans-rus-bold-24.fnt" antialias="true"/>
+</fonts>
